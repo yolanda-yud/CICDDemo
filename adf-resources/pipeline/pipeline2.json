@@ -1,0 +1,39 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TriggerTime",
+					"value": {
+						"value": "@pipeline().parameters.GetTime",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"GetTime": {
+				"type": "string"
+			},
+			"ABC": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"TriggerTime": {
+				"type": "String"
+			},
+			"ABC": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-05-19T09:20:40Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
