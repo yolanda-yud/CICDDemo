@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "test1.csv",
+				"fileName": "test11.xlsx",
 				"folderPath": "yud",
 				"container": "yudtutorial"
 			},
