@@ -1,0 +1,25 @@
+{
+	"name": "AzureSqlDatabase3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"userName": {
+				"type": "String",
+				"defaultValue": "yudtutorial"
+			},
+			"passWord": {
+				"type": "String",
+				"defaultValue": "Smilingface!"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=yudtutorial.database.windows.net;Initial Catalog=yudtutorial"
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime3",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

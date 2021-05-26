@@ -1,0 +1,122 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "test.json",
+				"folderPath": "yud",
+				"container": "yudtutorial"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"header": {
+					"type": "object",
+					"properties": {
+						"gtfs_realtime_version": {
+							"type": "string"
+						},
+						"incrementality": {
+							"type": "string"
+						},
+						"timestamp": {
+							"type": "integer"
+						}
+					}
+				},
+				"entity": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"trip_update": {
+								"type": "object",
+								"properties": {
+									"trip": {
+										"type": "object",
+										"properties": {
+											"trip_id": {
+												"type": "string"
+											},
+											"start_time": {
+												"type": "string"
+											},
+											"start_date": {
+												"type": "string"
+											},
+											"schedule_relationship": {
+												"type": "string"
+											},
+											"route_id": {
+												"type": "string"
+											}
+										}
+									},
+									"stop_time_update": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"arrival": {
+													"type": "object",
+													"properties": {
+														"delay": {
+															"type": "integer"
+														},
+														"time": {
+															"type": "integer"
+														}
+													}
+												},
+												"departure": {
+													"type": "object",
+													"properties": {
+														"delay": {
+															"type": "integer"
+														},
+														"time": {
+															"type": "integer"
+														}
+													}
+												},
+												"stop_id": {
+													"type": "string"
+												},
+												"schedule_relationship": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"vehicle": {
+										"type": "object",
+										"properties": {
+											"id": {
+												"type": "string"
+											}
+										}
+									},
+									"timestamp": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
