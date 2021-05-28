@@ -1,0 +1,25 @@
+{
+	"name": "RunEveryMinute",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyFromBlobToSql",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2021-05-28T08:32:00Z",
+				"endTime": "2021-05-29T08:32:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
