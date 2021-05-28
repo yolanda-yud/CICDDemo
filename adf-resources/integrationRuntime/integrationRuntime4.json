@@ -1,0 +1,17 @@
+{
+	"name": "integrationRuntime4",
+	"properties": {
+		"type": "Managed",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "Southeast Asia",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 10,
+					"cleanup": true
+				}
+			}
+		}
+	}
+}
