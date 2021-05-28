@@ -1,0 +1,922 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "yudtutorial"
+		},
+		"Tumbling_properties_pipeline_parameters_GetTime": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "varchar"
+					},
+					{
+						"name": "trip_update",
+						"type": "timestamp"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "emp"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "trip_update",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Table_1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PersonID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifytime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "data_source_table"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "data_source_table"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage5",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "*.csv",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage5",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FileName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					},
+					"compression": {
+						"type": "ZipDeflate"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "1.txt",
+						"container": "source"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "destination"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "copyIncre",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test1.csv",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test11.xlsx",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_pnq')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "destination"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "tripupdate_10_11_2019_10_51_30.json",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"header": {
+							"type": "object",
+							"properties": {
+								"gtfs_realtime_version": {
+									"type": "string"
+								},
+								"incrementality": {
+									"type": "string"
+								},
+								"timestamp": {
+									"type": "integer"
+								}
+							}
+						},
+						"entity": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"trip_update": {
+										"type": "object",
+										"properties": {
+											"trip": {
+												"type": "object",
+												"properties": {
+													"trip_id": {
+														"type": "string"
+													},
+													"start_time": {
+														"type": "string"
+													},
+													"start_date": {
+														"type": "string"
+													},
+													"schedule_relationship": {
+														"type": "string"
+													},
+													"route_id": {
+														"type": "string"
+													}
+												}
+											},
+											"stop_time_update": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"arrival": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"departure": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"stop_id": {
+															"type": "string"
+														},
+														"schedule_relationship": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"vehicle": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string"
+													}
+												}
+											},
+											"timestamp": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test.json",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"header": {
+							"type": "object",
+							"properties": {
+								"gtfs_realtime_version": {
+									"type": "string"
+								},
+								"incrementality": {
+									"type": "string"
+								},
+								"timestamp": {
+									"type": "integer"
+								}
+							}
+						},
+						"entity": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"trip_update": {
+										"type": "object",
+										"properties": {
+											"trip": {
+												"type": "object",
+												"properties": {
+													"trip_id": {
+														"type": "string"
+													},
+													"start_time": {
+														"type": "string"
+													},
+													"start_date": {
+														"type": "string"
+													},
+													"schedule_relationship": {
+														"type": "string"
+													},
+													"route_id": {
+														"type": "string"
+													}
+												}
+											},
+											"stop_time_update": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"arrival": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"departure": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"stop_id": {
+															"type": "string"
+														},
+														"schedule_relationship": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"vehicle": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string"
+													}
+												}
+											},
+											"timestamp": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "test.json",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"entity": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"trip_update": {
+										"type": "object",
+										"properties": {
+											"trip": {
+												"type": "object",
+												"properties": {
+													"trip_id": {
+														"type": "string"
+													},
+													"start_time": {
+														"type": "string"
+													},
+													"start_date": {
+														"type": "string"
+													},
+													"schedule_relationship": {
+														"type": "string"
+													},
+													"route_id": {
+														"type": "string"
+													}
+												}
+											},
+											"stop_time_update": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"arrival": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"departure": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"stop_id": {
+															"type": "string"
+														},
+														"schedule_relationship": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"vehicle": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string"
+													}
+												}
+											},
+											"timestamp": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "tripupdate_10_11_2019_10_51_30.json",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"header": {
+							"type": "object",
+							"properties": {
+								"gtfs_realtime_version": {
+									"type": "string"
+								},
+								"incrementality": {
+									"type": "string"
+								},
+								"timestamp": {
+									"type": "integer"
+								}
+							}
+						},
+						"entity": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"trip_update": {
+										"type": "object",
+										"properties": {
+											"trip": {
+												"type": "object",
+												"properties": {
+													"trip_id": {
+														"type": "string"
+													},
+													"start_time": {
+														"type": "string"
+													},
+													"start_date": {
+														"type": "string"
+													},
+													"schedule_relationship": {
+														"type": "string"
+													},
+													"route_id": {
+														"type": "string"
+													}
+												}
+											},
+											"stop_time_update": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"arrival": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"departure": {
+															"type": "object",
+															"properties": {
+																"delay": {
+																	"type": "integer"
+																},
+																"time": {
+																	"type": "integer"
+																}
+															}
+														},
+														"stop_id": {
+															"type": "string"
+														},
+														"schedule_relationship": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"vehicle": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string"
+													}
+												}
+											},
+											"timestamp": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_pnq')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "source"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/emp')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "emp.txt",
+						"folderPath": "yud",
+						"container": "yudtutorial"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/watermarktable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TableName",
+						"type": "varchar"
+					},
+					{
+						"name": "WatermarkValue",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "watermarktable"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tumbling')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "pipeline2",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"GetTime": "[parameters('Tumbling_properties_pipeline_parameters_GetTime')]"
+					}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 15,
+					"startTime": "2019-11-15T09:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
