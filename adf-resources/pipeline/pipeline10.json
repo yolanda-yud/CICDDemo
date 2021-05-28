@@ -26,11 +26,20 @@
 							"type": "JsonReadSettings"
 						}
 					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					}
 				]
