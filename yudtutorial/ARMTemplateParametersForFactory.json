@@ -26,6 +26,15 @@
 		"AzureBlobStorage7_connectionString": {
 			"value": ""
 		},
+		"AzureHDInsightLinkedService_clusterPassword": {
+			"value": ""
+		},
+		"AzureHDInsightLinkedService_clusterSshPassword": {
+			"value": ""
+		},
+		"AzureHDInsightLinkedService_servicePrincipalKey": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -46,6 +55,24 @@
 		},
 		"copyIncre_connectionString": {
 			"value": ""
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
+			"value": "97ab891d-1b78-4f5e-b462-a6c9362ade5e"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup": {
+			"value": "yudtutorial"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId": {
+			"value": "6bcd952c-7071-4e1d-834c-c2c039d00df6"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_clusterUserName": {
+			"value": "admin"
+		},
+		"AzureHDInsightLinkedService_properties_typeProperties_clusterSshUserName": {
+			"value": "admin"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://AzureKeyVaultLinked.vault.azure.net/"
