@@ -39,17 +39,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeAnalytics1'"
 		},
-		"AzureHDInsightLinkedService_clusterPassword": {
+		"AzureDatabricks_LinkedService_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'clusterPassword' of 'AzureHDInsightLinkedService'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_LinkedService'"
 		},
-		"AzureHDInsightLinkedService_clusterSshPassword": {
+		"AzureHDInsightLinkedService_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'clusterSshPassword' of 'AzureHDInsightLinkedService'"
-		},
-		"AzureHDInsightLinkedService_servicePrincipalKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureHDInsightLinkedService'"
+			"metadata": "Secure string for 'password' of 'AzureHDInsightLinkedService'"
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
@@ -99,27 +95,7 @@
 			"type": "string",
 			"defaultValue": "adla"
 		},
-		"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
-			"type": "string",
-			"defaultValue": "97ab891d-1b78-4f5e-b462-a6c9362ade5e"
-		},
-		"AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup": {
-			"type": "string",
-			"defaultValue": "yudtutorial"
-		},
-		"AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "6bcd952c-7071-4e1d-834c-c2c039d00df6"
-		},
-		"AzureHDInsightLinkedService_properties_typeProperties_tenant": {
-			"type": "string",
-			"defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
-		},
-		"AzureHDInsightLinkedService_properties_typeProperties_clusterUserName": {
-			"type": "string",
-			"defaultValue": "admin"
-		},
-		"AzureHDInsightLinkedService_properties_typeProperties_clusterSshUserName": {
+		"AzureHDInsightLinkedService_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "admin"
 		},
@@ -1503,45 +1479,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Spark1",
-						"type": "HDInsightSpark",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"rootPath": "yudtutorial/spark/script",
-							"entryFilePath": "WordCount_Spark.py",
-							"sparkJobLinkedService": {
-								"referenceName": "AzureBlobStorage1",
-								"type": "LinkedServiceReference"
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureHDInsightLinkedService",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureHDInsightLinkedService')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/setVariable')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1581,6 +1518,45 @@
 				"lastPublishTime": "2021-05-19T09:20:40Z"
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sparkpipline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Spark1",
+						"type": "HDInsightSpark",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"rootPath": "yudtutorial/spark/script",
+							"entryFilePath": "WordCount_Spark.py",
+							"sparkJobLinkedService": {
+								"referenceName": "AzureBlobStorage1",
+								"type": "LinkedServiceReference"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureHDInsightLinkedService",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureHDInsightLinkedService')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/untilLookup')]",
@@ -2761,47 +2737,45 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_LinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-4126719546928532.12.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_LinkedService_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_NC12",
+					"newClusterNumOfWorker": "2",
+					"newClusterVersion": "5.5.x-gpu-scala2.11",
+					"newClusterInitScripts": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureHDInsightLinkedService')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "HDInsightOnDemand",
+				"type": "HDInsight",
 				"typeProperties": {
-					"clusterType": "spark",
-					"clusterSize": 4,
-					"timeToLive": "00:15:00",
-					"version": "4.0",
-					"hostSubscriptionId": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId')]",
-					"clusterResourceGroup": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_clusterResourceGroup')]",
-					"servicePrincipalId": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_servicePrincipalId')]",
-					"osType": "Linux",
-					"tenant": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_tenant')]",
-					"clusterNamePrefix": "",
-					"clusterUserName": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_clusterUserName')]",
-					"clusterPassword": {
+					"clusterUri": "https://yud.azurehdinsight.net",
+					"userName": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_userName')]",
+					"password": {
 						"type": "SecureString",
-						"value": "[parameters('AzureHDInsightLinkedService_clusterPassword')]"
+						"value": "[parameters('AzureHDInsightLinkedService_password')]"
 					},
-					"clusterSshUserName": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_clusterSshUserName')]",
-					"clusterSshPassword": {
-						"type": "SecureString",
-						"value": "[parameters('AzureHDInsightLinkedService_clusterSshPassword')]"
-					},
-					"sparkVersion": "",
-					"servicePrincipalKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureHDInsightLinkedService_servicePrincipalKey')]"
-					},
+					"isEspEnabled": false,
 					"linkedServiceName": {
 						"referenceName": "AzureBlobStorage1",
 						"type": "LinkedServiceReference"
-					},
-					"headNodeSize": "",
-					"dataNodeSize": "",
-					"zookeeperNodeSize": "",
-					"subnetName": "",
-					"virtualNetworkId": ""
+					}
 				}
 			},
 			"dependsOn": [
