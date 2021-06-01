@@ -10,7 +10,7 @@
 			"newClusterNumOfWorker": "2",
 			"newClusterVersion": "5.5.x-gpu-scala2.11",
 			"newClusterInitScripts": [],
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIllVRFRVVE9SSUFMXzRlMGE5NDc5LWRiMzMtNGU5My1hZDMxLTg1YmI2M2JkNGZjNyINCn0="
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIllVRFRVVE9SSUFMX2NhMjcxZWVjLTU3NmMtNGE1ZC04MzBkLTY2ODNkZDBhNmY5NyINCn0="
 		}
 	}
 }
