@@ -26,6 +26,9 @@
 		"AzureBlobStorage7_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeAnalytics1_servicePrincipalKey": {
+			"value": ""
+		},
 		"AzureHDInsightLinkedService_clusterPassword": {
 			"value": ""
 		},
@@ -55,6 +58,21 @@
 		},
 		"copyIncre_connectionString": {
 			"value": ""
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+			"value": "bohanadla"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"value": "yudtutorial"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+			"value": "97ab891d-1b78-4f5e-b462-a6c9362ade5e"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+			"value": "adla"
 		},
 		"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
 			"value": "97ab891d-1b78-4f5e-b462-a6c9362ade5e"
@@ -88,6 +106,9 @@
 		},
 		"trigger1_properties_pipeline_parameters_GetTime": {
 			"value": "@trigger.outputs.windowStartTime"
+		},
+		"trigger3_properties_typeProperties_scope": {
+			"value": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
 		},
 		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
 			"value": "yudtutorial.database.windows.net"
