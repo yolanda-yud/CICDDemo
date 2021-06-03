@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "EventBasedTrigger",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"GetFileName": "@triggerBody().fileName"
 				}
 			}
 		],
