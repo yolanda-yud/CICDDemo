@@ -8,7 +8,7 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "TriggerGetName",
+					"variableName": "TriggerGetname",
 					"value": {
 						"value": "@trigger.outputs.GetFileName",
 						"type": "Expression"
@@ -17,12 +17,12 @@
 			}
 		],
 		"parameters": {
-			"GetFileName": {
+			"GetFilename": {
 				"type": "string"
 			}
 		},
 		"variables": {
-			"TriggerGetName": {
+			"TriggerGetname": {
 				"type": "String"
 			}
 		},

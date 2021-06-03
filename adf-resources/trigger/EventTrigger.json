@@ -10,7 +10,7 @@
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"GetFileName": "@triggerBody().fileName"
+					"GetFilename": "@triggerBody().fileName"
 				}
 			}
 		],
