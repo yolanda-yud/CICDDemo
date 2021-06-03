@@ -117,7 +117,7 @@
 						"typeProperties": {
 							"variableName": "TriggerGetname",
 							"value": {
-								"value": "@trigger.outputs.GetFilename",
+								"value": "@pipeline().parameters.GetFilename",
 								"type": "Expression"
 							}
 						}
