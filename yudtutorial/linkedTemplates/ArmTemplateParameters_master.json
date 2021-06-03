@@ -77,9 +77,6 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://AzureKeyVaultLinked.vault.azure.net/"
 		},
-		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
-			"value": "emp.txt"
-		},
 		"EventTrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
 		},

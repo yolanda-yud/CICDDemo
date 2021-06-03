@@ -103,10 +103,6 @@
 			"type": "string",
 			"defaultValue": "https://AzureKeyVaultLinked.vault.azure.net/"
 		},
-		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
-			"type": "string",
-			"defaultValue": "emp.txt"
-		},
 		"EventTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
@@ -277,9 +273,6 @@
 					},
 					"AzureHDInsightLinkedService_properties_typeProperties_userName": {
 						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_userName')]"
-					},
-					"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
-						"value": "[parameters('EventTrigger_properties_EventBasedTrigger_parameters_GetFileName')]"
 					},
 					"EventTrigger_properties_typeProperties_scope": {
 						"value": "[parameters('EventTrigger_properties_typeProperties_scope')]"

@@ -15,10 +15,6 @@
 			"type": "string",
 			"defaultValue": "admin"
 		},
-		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
-			"type": "string",
-			"defaultValue": "emp.txt"
-		},
 		"EventTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
@@ -204,9 +200,7 @@
 							"referenceName": "EventBasedTrigger",
 							"type": "PipelineReference"
 						},
-						"parameters": {
-							"GetFileName": "[parameters('EventTrigger_properties_EventBasedTrigger_parameters_GetFileName')]"
-						}
+						"parameters": {}
 					}
 				],
 				"type": "BlobEventsTrigger",
