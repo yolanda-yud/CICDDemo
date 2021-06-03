@@ -8,9 +8,9 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "TriggerName",
+					"variableName": "TriggerGetName",
 					"value": {
-						"value": "@pipeline().parameters.GetFileName",
+						"value": "@trigger.outputs.body.fileName",
 						"type": "Expression"
 					}
 				}
@@ -22,7 +22,7 @@
 			}
 		},
 		"variables": {
-			"TriggerName": {
+			"TriggerGetName": {
 				"type": "String"
 			}
 		},
