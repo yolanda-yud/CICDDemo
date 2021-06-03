@@ -103,7 +103,7 @@
 			"type": "string",
 			"defaultValue": "https://AzureKeyVaultLinked.vault.azure.net/"
 		},
-		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
+		"EventTrigger_properties_EventBasedTrigger_parameters_GetFilename": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
@@ -278,8 +278,8 @@
 					"AzureHDInsightLinkedService_properties_typeProperties_userName": {
 						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_userName')]"
 					},
-					"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
-						"value": "[parameters('EventTrigger_properties_EventBasedTrigger_parameters_GetFileName')]"
+					"EventTrigger_properties_EventBasedTrigger_parameters_GetFilename": {
+						"value": "[parameters('EventTrigger_properties_EventBasedTrigger_parameters_GetFilename')]"
 					},
 					"EventTrigger_properties_typeProperties_scope": {
 						"value": "[parameters('EventTrigger_properties_typeProperties_scope')]"

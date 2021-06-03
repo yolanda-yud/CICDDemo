@@ -115,21 +115,21 @@
 						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
-							"variableName": "TriggerGetName",
+							"variableName": "TriggerGetname",
 							"value": {
-								"value": "@trigger.outputs.GetFileName",
+								"value": "@trigger.outputs.GetFilename",
 								"type": "Expression"
 							}
 						}
 					}
 				],
 				"parameters": {
-					"GetFileName": {
+					"GetFilename": {
 						"type": "string"
 					}
 				},
 				"variables": {
-					"TriggerGetName": {
+					"TriggerGetname": {
 						"type": "String"
 					}
 				},

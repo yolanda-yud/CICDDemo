@@ -77,7 +77,7 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://AzureKeyVaultLinked.vault.azure.net/"
 		},
-		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
+		"EventTrigger_properties_EventBasedTrigger_parameters_GetFilename": {
 			"value": "@triggerBody().fileName"
 		},
 		"EventTrigger_properties_typeProperties_scope": {
