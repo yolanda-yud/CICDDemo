@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "TriggerGetname",
 					"value": {
-						"value": "@trigger.outputs.GetFileName",
+						"value": "@trigger.outputs.GetFilename",
 						"type": "Expression"
 					}
 				}
