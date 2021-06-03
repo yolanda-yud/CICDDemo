@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "DatabricksPipe",
 	"properties": {
 		"activities": [
 			{
@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"notebookPath": "/yudtutorial/mynotebook",
 					"baseParameters": {
-						"input": "@pipeline().parameters.name"
+						"input": {
+							"value": "@pipeline().parameters.name",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
