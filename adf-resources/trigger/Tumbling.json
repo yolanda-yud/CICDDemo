@@ -2,7 +2,7 @@
 	"name": "Tumbling",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "setVariableTumbling",
