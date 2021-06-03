@@ -77,6 +77,12 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://AzureKeyVaultLinked.vault.azure.net/"
 		},
+		"EventTrigger_properties_EventBasedTrigger_parameters_GetFileName": {
+			"value": "emp.txt"
+		},
+		"EventTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
+		},
 		"Trigger_pnq_properties_pipeline_parameters_windowStart": {
 			"value": "@trigger().outputs.windowStartTime"
 		},
@@ -88,9 +94,6 @@
 		},
 		"trigger1_properties_pipeline_parameters_GetTime": {
 			"value": "@trigger.outputs.windowStartTime"
-		},
-		"trigger3_properties_typeProperties_scope": {
-			"value": "/subscriptions/97ab891d-1b78-4f5e-b462-a6c9362ade5e/resourceGroups/yudtutorial/providers/Microsoft.Storage/storageAccounts/yudtutorial"
 		},
 		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
 			"value": "yudtutorial.database.windows.net"

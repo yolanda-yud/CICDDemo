@@ -104,7 +104,41 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/setVariable')]",
+			"name": "[concat(parameters('factoryName'), '/EventBasedTrigger')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TriggerName",
+							"value": {
+								"value": "@pipeline().parameters.GetFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"GetFileName": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"TriggerName": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/setVariableTumbling')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -411,19 +445,6 @@
 							"cleanup": true
 						}
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/powerquery1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "WranglingDataFlow",
-				"typeProperties": {
-					"sources": [],
-					"sinks": []
 				}
 			},
 			"dependsOn": []
