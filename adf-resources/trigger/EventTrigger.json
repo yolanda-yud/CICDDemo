@@ -8,9 +8,6 @@
 				"pipelineReference": {
 					"referenceName": "EventBasedTrigger",
 					"type": "PipelineReference"
-				},
-				"parameters": {
-					"GetFileName": "emp.txt"
 				}
 			}
 		],
